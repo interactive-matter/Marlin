@@ -29,7 +29,7 @@
 // Sanguinololu 1.2 and above = 62
 // Ultimaker = 7,
 // Teensylu = 8
-#define MOTHERBOARD 7
+#define MOTHERBOARD 33
 
 //===========================================================================
 //=============================Thermal Settings  ============================
@@ -44,20 +44,20 @@
 // 6 is EPCOS 100k
 // 7 is 100k Honeywell thermistor 135-104LAG-J01
 
-//#define THERMISTORHEATER_0 3
+#define THERMISTORHEATER_0 7
 //#define THERMISTORHEATER_1 1
 //#define THERMISTORHEATER_2 1
 
-//#define HEATER_0_USES_THERMISTOR
+#define HEATER_0_USES_THERMISTOR
 //#define HEATER_1_USES_THERMISTOR
 //#define HEATER_2_USES_THERMISTOR
-#define HEATER_0_USES_AD595
+//#define HEATER_0_USES_AD595
 //#define HEATER_1_USES_AD595
 //#define HEATER_2_USES_AD595
 
 // Select one of these only to define how the bed temp is read.
 //#define THERMISTORBED 1
-//#define BED_USES_THERMISTOR
+#define BED_USES_THERMISTOR
 //#define BED_USES_AD595
 
 #define BED_CHECK_INTERVAL 5000 //ms
@@ -315,7 +315,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define SD_FINISHED_STEPPERRELEASE true  //if sd support and the file is finished: disable steppers?
 #define SD_FINISHED_RELEASECOMMAND "M84 X Y E" // no z because of layer shift.
 
-#define ULTIPANEL
+//#define ULTIPANEL
 #ifdef ULTIPANEL
   //#define NEWPANEL  //enable this if you have a click-encoder panel
   #define SDSUPPORT
