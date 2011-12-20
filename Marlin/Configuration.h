@@ -45,7 +45,7 @@
 // 7 is 100k Honeywell thermistor 135-104LAG-J01
 
 #define THERMISTORHEATER_0 7
-//#define THERMISTORHEATER_1 1
+//#define THERMISTORHEATER_1 7
 //#define THERMISTORHEATER_2 1
 
 #define HEATER_0_USES_THERMISTOR
@@ -56,8 +56,8 @@
 //#define HEATER_2_USES_AD595
 
 // Select one of these only to define how the bed temp is read.
-//#define THERMISTORBED 1
-#define BED_USES_THERMISTOR
+#define THERMISTORBED 7
+//#define BED_USES_THERMISTOR
 //#define BED_USES_AD595
 
 #define BED_CHECK_INTERVAL 5000 //ms
@@ -73,7 +73,7 @@
 #define TEMP_HYSTERESIS 3       // (C°) range of +/- temperatures considered "close" to the target one
 
 //// The minimal temperature defines the temperature below which the heater will not be enabled
-#define HEATER_0_MINTEMP 5
+//#define HEATER_0_MINTEMP 5
 //#define HEATER_1_MINTEMP 5
 //#define HEATER_2_MINTEMP 5
 //#define BED_MINTEMP 5
@@ -92,7 +92,7 @@
 // This defines if the M109 call should not block if it is cooling down.
 // example: From a current temp of 220, you set M109 S200. 
 // if CooldownNoWait is defined M109 will not wait for the cooldown to finish
-#define CooldownNoWait true
+#define CooldownNoWait false
 
 // Heating is finished if a temperature close to this degree shift is reached
 #define HEATING_EARLY_FINISH_DEG_OFFSET 1 //Degree
@@ -204,7 +204,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define INVERT_E*_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false, used for all extruders
 
 #define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
+#define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true     // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -238,7 +238,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200*8/3,760*1.1}                    // default steps per unit for ultimaker 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {178.1452,178.1452,200*8/3,760*1.1} // my prusa 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 3333.92, 360} //sells mendel with v9 extruder
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.3232, 80.8900, 2284.7651, 757.2218} // SAE Prusa w/ Wade extruder
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 45}    // (mm/sec)    
