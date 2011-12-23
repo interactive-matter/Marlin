@@ -44,7 +44,7 @@
 // 6 is EPCOS 100k
 // 7 is 100k Honeywell thermistor 135-104LAG-J01
 
-#define THERMISTORHEATER_0 7
+#define THERMISTORHEATER_0 6
 //#define THERMISTORHEATER_1 7
 //#define THERMISTORHEATER_2 1
 
@@ -56,8 +56,8 @@
 //#define HEATER_2_USES_AD595
 
 // Select one of these only to define how the bed temp is read.
-#define THERMISTORBED 7
-//#define BED_USES_THERMISTOR
+#define THERMISTORBED 1
+#define BED_USES_THERMISTOR
 //#define BED_USES_AD595
 
 #define BED_CHECK_INTERVAL 5000 //ms
@@ -76,7 +76,7 @@
 //#define HEATER_0_MINTEMP 5
 //#define HEATER_1_MINTEMP 5
 //#define HEATER_2_MINTEMP 5
-//#define BED_MINTEMP 5
+#define BED_MINTEMP 5
 
 
 // When temperature exceeds max temp, your heater will be switched off.
@@ -130,9 +130,9 @@
 //    #define  DEFAULT_Kd (PID_SWING_AT_CRITIAL/8./PID_dT)  
 
 // Ultitmaker
-    #define  DEFAULT_Kp  22.2
-    #define  DEFAULT_Ki (1.25*PID_dT)  
-    #define  DEFAULT_Kd (99/PID_dT)  
+//    #define  DEFAULT_Kp  22.2
+//    #define  DEFAULT_Ki (1.25*PID_dT)  
+//    #define  DEFAULT_Kd (99/PID_dT)  
 
 // Makergear
 //    #define  DEFAULT_Kp 7.0
@@ -140,9 +140,9 @@
 //    #define  DEFAULT_Kd 12  
 
 // Mendel Parts V9 on 12V    
-//    #define  DEFAULT_Kp  63.0
-//    #define  DEFAULT_Ki (2.25*PID_dT)  
-//    #define  DEFAULT_Kd (440/PID_dT)  
+    #define  DEFAULT_Kp  63.0
+    #define  DEFAULT_Ki (2.25*PID_dT)  
+    #define  DEFAULT_Kd (440/PID_dT)  
   #endif
    
   #ifdef PID_PI
@@ -203,7 +203,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define INVERT_Z_DIR false    // for Mendel set to false, for Orca set to true
 //#define INVERT_E*_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false, used for all extruders
 
-#define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
+#define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
 #define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true     // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -238,11 +238,11 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {178.1452,178.1452,200*8/3,760*1.1} // my prusa 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,321.285,760*1.1} // my prusa 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 3333.92, 360} //sells mendel with v9 extruder
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.3232, 80.8900, 2284.7651, 757.2218} // SAE Prusa w/ Wade extruder
-#define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 45}    // (mm/sec)    
-#define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_MAX_FEEDRATE          {500, 500, 2, 45}    // (mm/sec)    
+#define DEFAULT_MAX_ACCELERATION      {9000,9000,1,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
 #define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
