@@ -17,20 +17,16 @@
  * along with the Arduino SdFat Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
+#include "Marlin.h"
+#ifdef SDSUPPORT
+
 #ifndef SdFatUtil_h
 #define SdFatUtil_h
 /**
  * \file
  * \brief Useful utility functions.
  */
-#include <avr/pgmspace.h>
-
-#define  HardwareSerial_h // trick to disable the standard HWserial
-#if ARDUINO < 100
-#include <WProgram.h>
-#else  // ARDUINO
-#include <Arduino.h>
-#endif  // ARDUINO
+#include "Marlin.h"
 #include "MarlinSerial.h"
 /** Store and print a string in flash memory.*/
 #define PgmPrint(x) SerialPrint_P(PSTR(x))
@@ -47,3 +43,6 @@ namespace SdFatUtil {
 
 using namespace SdFatUtil;  // NOLINT
 #endif  // #define SdFatUtil_h
+
+
+#endif

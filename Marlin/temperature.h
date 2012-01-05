@@ -22,7 +22,6 @@
 #define temperature_h 
 
 #include "Marlin.h"
-#include "fastio.h"
 #include "planner.h"
 #ifdef PID_ADD_EXTRUSION_RATE
   #include "stepper.h"
@@ -43,6 +42,10 @@ extern int heatingtarget_raw[EXTRUDERS];
 extern int current_raw[EXTRUDERS];
 extern int target_raw_bed;
 extern int current_raw_bed;
+#ifdef BED_LIMIT_SWITCHING
+  extern int target_bed_low_temp ;  
+  extern int target_bed_high_temp ;
+#endif
 extern float Kp,Ki,Kd,Kc;
 
 #ifdef PIDTEMP
@@ -83,7 +86,20 @@ FORCE_INLINE void setTargetHotend(const float &celsius, uint8_t extruder) {
 };
 
 FORCE_INLINE void setTargetBed(const float &celsius) {  
+  
   target_raw_bed = temp2analogBed(celsius);
+  #ifdef BED_LIMIT_SWITCHING
+    if(celsius>BED_HYSTERESIS)
+    {
+    target_bed_low_temp= temp2analogBed(celsius-BED_HYSTERESIS);
+    target_bed_high_temp= temp2analogBed(celsius+BED_HYSTERESIS);
+    }
+    else
+    { 
+      target_bed_low_temp=0;
+      target_bed_high_temp=0;
+    }
+  #endif
 };
 
 FORCE_INLINE bool isHeatingHotend(uint8_t extruder){  
@@ -125,6 +141,13 @@ FORCE_INLINE bool isCoolingBed() {
 #error Invalid number of extruders
 #endif
 
+
+
+int getHeaterPower(int heater);
+void disable_heater();
+void setWatch();
+void updatePID();
+
 FORCE_INLINE void autotempShutdown(){
  #ifdef AUTOTEMP
  if(autotemp_enabled)
@@ -135,11 +158,5 @@ FORCE_INLINE void autotempShutdown(){
  }
  #endif
 }
-
-int getHeaterPower(int heater);
-void disable_heater();
-void setWatch();
-void updatePID();
-
 #endif
 

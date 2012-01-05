@@ -1,8 +1,8 @@
+#include "Marlin.h"
 #include "cardreader.h"
-//#include <unistd.h>
 #ifdef SDSUPPORT
 
-#include "Configuration.h"
+
 
 CardReader::CardReader()
 {
@@ -163,6 +163,15 @@ void CardReader::initsd()
   {
     SERIAL_ECHOLNPGM("workDir open failed");
   }
+}
+
+void CardReader::setroot()
+{
+ curDir=&root;
+  if(!workDir.openRoot(&volume))
+  {
+    SERIAL_ECHOLNPGM("workDir open failed");
+  } 
 }
 void CardReader::release()
 {
@@ -432,6 +441,7 @@ void CardReader::updir()
 
 void CardReader::printingHasFinished()
 {
+ st_synchronize();
  quickStop();
  sdprinting = false;
  stop_heating_wait=true;

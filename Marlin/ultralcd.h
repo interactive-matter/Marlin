@@ -1,9 +1,8 @@
 #ifndef __ULTRALCDH
 #define __ULTRALCDH
-#include "Configuration.h"
 #include "Marlin.h"
 #ifdef ULTRA_LCD
-
+  #include <LiquidCrystal.h>
   void lcd_status();
   void lcd_init();
   void lcd_status(const char* message);
@@ -15,7 +14,7 @@
   #define STATUSTIMEOUT 15000
 
 
-  #include <LiquidCrystal.h>
+  
   extern LiquidCrystal lcd;
 
 
@@ -152,5 +151,13 @@
   
 void lcd_statuspgm(const char* message);
   
+char *ftostr3(const float &x);
+char *itostr2(const uint8_t &x);
+char *ftostr31(const float &x);
+char *ftostr32(const float &x);
+char *itostr31(const int &xx);
+char *itostr3(const int &xx);
+char *itostr4(const int &xx);
+char *ftostr51(const float &x);
 #endif //ULTRALCD
 

@@ -1,7 +1,7 @@
 TARGET = $(notdir $(CURDIR))
 # CHANGE BELOW:
 #~ INSTALL_DIR = /Applications/Arduino.app/Contents/Resources/Java
-INSTALL_DIR = /home/bkubicek/software/arduino-0022
+INSTALL_DIR = /home/bkubicek/software/arduino-0023
 #~ PORT = /dev/cu.usbserial*
 PORT = /dev/ttyACM0
 
@@ -26,6 +26,31 @@ TERM=bash
 ############################################################################
 # Below here nothing should be changed...
 
+LINKORDER=\
+applet/Marlin.cpp.o \
+applet/EEPROM.o  \
+applet/main.o \
+applet/MarlinSerial.o \
+applet/motion_control.o\
+applet/pins_arduino.o\
+applet/planner.o\
+applet/Print.o\
+applet/Sd2Card.o\
+applet/SdBaseFile.o\
+applet/SdFatUtil.o\
+applet/SdFile.o\
+applet/SdVolume.o\
+applet/stepper.o\
+applet/temperature.o\
+applet/WInterrupts.o\
+applet/wiring_analog.o\
+applet/wiring_digital.o\
+applet/wiring.o\
+applet/wiring_pulse.o\
+applet/wiring_shift.o\
+applet/WMath.o
+
+PDES=Marlin.pde  ultralcd.pde  watchdog.pde cardreader.pde  
 ARDUINO = $(INSTALL_DIR)/hardware/arduino/cores/arduino
 #
 #~ AVR_TOOLS_PATH = $(INSTALL_DIR)/hardware/tools/avr/bin
@@ -60,8 +85,8 @@ OPT = 2
 #~ CDEFS = -DBUILD_F_CPU=$(BUILD_F_CPU)
 #~ CXXDEFS = -DBUILD_F_CPU=$(BUILD_F_CPU)
 # now called DF_CPU
-CDEFS = -DF_CPU=$(BUILD_F_CPU) -DARDUINO=22
-CXXDEFS = -DF_CPU=$(BUILD_F_CPU) -DARDUINO=22
+CDEFS = -DF_CPU=$(BUILD_F_CPU) -DARDUINO=23
+CXXDEFS = -DF_CPU=$(BUILD_F_CPU) -DARDUINO=23
 
 # Place -I options here
 CINCS = -I$(ARDUINO) -I$(INSTALL_DIR)/libraries/LiquidCrystal/ -I$(INSTALL_DIR)/libraries/EEPROM/
@@ -129,6 +154,7 @@ MV = mv -f
 # and then, match to corresponding rule somehow?
 # or leave this - and parse in rule (auth automatic variable $(@F))?
 # "Suffix Replacement"
+CXXSRC+=MarlinSerial.cpp    SdBaseFile.cpp  stepper.cpp motion_control.cpp SdFatUtil.cpp temperature.cpp planner.cpp SdFile.cpp Sd2Card.cpp SdVolume.cpp
 OBJ = $(SRC:.c=.o) $(CXXSRC:.cpp=.o) $(ASRC:.S=.o)
 
 # added - OBJ list, transformed into applet/
@@ -192,7 +218,9 @@ applet_files: $(TARGET).pde
 	@echo ALL CXXLIBOBJ: $(CXXLIBOBJ)
 #	echo '#include "WProgram.h"' > applet/$(TARGET).cpp
 	@echo "#include \"WProgram.h\"\nvoid setup();\nvoid loop();\n" > applet/$(TARGET).cpp
-	cat $(TARGET).pde >> applet/$(TARGET).cpp
+	##cat $(TARGET).pde >> applet/$(TARGET).cpp
+	cat ${PDES}>> applet/$(TARGET).cpp
+	cp *.cpp applet/
     # no more need to cat main.cpp (v0022) - now it is compiled in
 #	cat $(ARDUINO)/main.cpp >> applet/$(TARGET).cpp
 
@@ -253,7 +281,10 @@ applet/$(TARGET).elf: $(TARGET).pde applet/$(TARGET).cpp.o applet/core.a
 #	$(CC) $(ALL_CFLAGS) -o $@ applet/$(TARGET).cpp -L. applet/core.a $(LDFLAGS)
 # changed as in IDE v0022: link cpp obj files
 	@echo $$(tput bold)$$(tput setaf 2) $(CC) $$(tput sgr0) $(ALL_CFLAGS) $(CFINALF) -o $@ applet/$(TARGET).cpp.o $(CXXOBJ) -L. applet/core.a $(LDFLAGS)
-	@$(CC) $(ALL_CFLAGS) $(CFINALF) -o $@ applet/$(TARGET).cpp.o $(CXXOBJ) -L. applet/core.a $(LDFLAGS)
+	echo ${OBJT}
+	#$(CC) $(ALL_CFLAGS) $(CFINALF) -o $@  applet/$(TARGET).cpp.o  -L. applet/core.a $(LDFLAGS)
+	$(CC) $(ALL_CFLAGS) $(CFINALF) -o $@ ${LINKORDER}   $(LDFLAGS)
+	#@$(CC) $(ALL_CFLAGS) $(CFINALF) -o $@ applet/*.o applet/$(TARGET).cpp.o $(CXXOBJ) -L. applet/core.a $(LDFLAGS)
 
 # added: cpp.o depends on cpp (and .pde which generates it)
 # $< "first item in the dependencies list"; $@ "left side of the :"; $^ "right side of the :"

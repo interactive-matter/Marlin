@@ -17,7 +17,11 @@
  * along with the Arduino SdFat Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
+#include "Marlin.h"
+
+#ifdef SDSUPPORT
 #include "SdFatUtil.h"
+
 //------------------------------------------------------------------------------
 /** Amount of free RAM
  * \return The number of free bytes.
@@ -72,3 +76,4 @@ void SdFatUtil::SerialPrint_P(PGM_P str) {
 void SdFatUtil::SerialPrintln_P(PGM_P str) {
   println_P( str);
 }
+#endif

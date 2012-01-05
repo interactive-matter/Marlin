@@ -21,6 +21,9 @@
  * \file
  * \brief SdFile class
  */
+#include "Marlin.h"
+
+#ifdef SDSUPPORT
 #include "SdBaseFile.h"
 #include <Print.h>
 #ifndef SdFile_h
@@ -35,10 +38,10 @@ class SdFile : public SdBaseFile, public Print {
   SdFile() {}
   SdFile(const char* name, uint8_t oflag);
   #if ARDUINO >= 100
-  size_t write(uint8_t b);
-#else
+      size_t write(uint8_t b);
+  #else
    void write(uint8_t b);
-#endif
+  #endif
   
   int16_t write(const void* buf, uint16_t nbyte);
   void write(const char* str);
@@ -46,3 +49,6 @@ class SdFile : public SdBaseFile, public Print {
   void writeln_P(PGM_P str);
 };
 #endif  // SdFile_h
+
+
+#endif
