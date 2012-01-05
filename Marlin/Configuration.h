@@ -238,10 +238,10 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,321.285,760*1.1} // my prusa 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,5074.590,760*1.1} // my prusa 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 3333.92, 360} //sells mendel with v9 extruder
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.3232, 80.8900, 2284.7651, 757.2218} // SAE Prusa w/ Wade extruder
-#define DEFAULT_MAX_FEEDRATE          {500, 500, 2, 45}    // (mm/sec)    
+#define DEFAULT_MAX_FEEDRATE          {500, 500, 3, 45}    // (mm/sec)    
 #define DEFAULT_MAX_ACCELERATION      {9000,9000,1,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
