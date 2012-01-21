@@ -4,8 +4,8 @@
 
 
 // This determines the communication speed of the printer
-#define BAUDRATE 250000
-//#define BAUDRATE 115200
+//#define BAUDRATE 250000
+#define BAUDRATE 115200
 //#define BAUDRATE 230400
 
 #define EXTRUDERS 1
@@ -44,7 +44,7 @@
 // 6 is EPCOS 100k
 // 7 is 100k Honeywell thermistor 135-104LAG-J01
 
-#define THERMISTORHEATER_0 7
+#define THERMISTORHEATER_0 1
 //#define THERMISTORHEATER_1 7
 //#define THERMISTORHEATER_2 1
 
@@ -144,9 +144,14 @@
 //    #define  DEFAULT_Kd 12  
 
 // Mendel Parts V9 on 12V    
-    #define  DEFAULT_Kp  63.0
-    #define  DEFAULT_Ki (2.25*PID_dT)  
-    #define  DEFAULT_Kd (440/PID_dT)  
+//    #define  DEFAULT_Kp  63.0
+//    #define  DEFAULT_Ki (2.25*PID_dT)  
+//    #define  DEFAULT_Kd (440/PID_dT)  
+
+// My RepRap    
+//    #define  DEFAULT_Kp  20.0
+//    #define  DEFAULT_Ki 160.0  
+//    #define  DEFAULT_Kd 1.66  
   #endif
    
   #ifdef PID_PI
