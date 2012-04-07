@@ -4,8 +4,8 @@
 
 
 // This determines the communication speed of the printer
-//#define BAUDRATE 250000
-#define BAUDRATE 115200
+#define BAUDRATE 250000
+//#define BAUDRATE 115200
 //#define BAUDRATE 230400
 
 #define EXTRUDERS 1
@@ -149,9 +149,9 @@
 //    #define  DEFAULT_Kd (440/PID_dT)  
 
 // My RepRap    
-//    #define  DEFAULT_Kp  20.0
-//    #define  DEFAULT_Ki 160.0  
-//    #define  DEFAULT_Kd 1.66  
+    #define  DEFAULT_Kp  20.0
+    #define  DEFAULT_Ki 160.0  
+    #define  DEFAULT_Kd 1.66  
   #endif
    
   #ifdef PID_PI
@@ -216,7 +216,7 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 #define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
 #define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true     // for Mendel set to false, for Orca set to true
-#define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_E0_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 
@@ -248,7 +248,7 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,5074.590,760*1.1} // my prusa 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,5074.590,760*0.947} // my prusa 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 3333.92, 360} //sells mendel with v9 extruder
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.3232, 80.8900, 2284.7651, 757.2218} // SAE Prusa w/ Wade extruder
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 3, 45}    // (mm/sec)    
@@ -363,7 +363,7 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 //this prevents dangerous Extruder moves, i.e. if the temperature is under the limit
 //can be software-disabled for whatever purposes by
 #define PREVENT_DANGEROUS_EXTRUDE
-#define EXTRUDE_MINTEMP 190
+#define EXTRUDE_MINTEMP 180
 #define EXTRUDE_MAXLENGTH (X_MAX_LENGTH+Y_MAX_LENGTH) //prevent extrusion of very large distances.
 
 const int dropsegments=5; //everything with less than this number of steps will be ignored as move and joined with the next movement
