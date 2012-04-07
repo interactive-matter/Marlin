@@ -248,7 +248,7 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,5074.590,760*0.947} // my prusa 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {177.6123,177.6123,5074.590,760*0.937} // my prusa 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 3333.92, 360} //sells mendel with v9 extruder
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.3232, 80.8900, 2284.7651, 757.2218} // SAE Prusa w/ Wade extruder
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 3, 45}    // (mm/sec)    
